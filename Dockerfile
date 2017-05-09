@@ -1,7 +1,7 @@
 FROM ubuntu
 
 # Install script dependance avaible on apt source
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --allow-unauthenticated\
                 wget \
                 zip \
                 bzip2 \
@@ -29,8 +29,8 @@ RUN apt-get update && apt-get install -y \
                 rm  -rf /tmp/Miniconda3-latest-Linux-x86_64.sh && \
                 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ && \
                 conda config --set show_channel_urls yes && \
-                conda create -y -n py35_gdal python=3.5 gdal && \
-                conda create -y -n py_downloader && \
+                conda create -y -n py35_gdal python=3.5 gdal pandas basemap matplotlib pymysql sqlalchemy && \
+                conda create -y -n py_downloader pandas basemap matplotlib pymysql sqlalchemy && \
                 source activate py_downloader && \
                 conda install -y pillow \
                                  pandas \
@@ -41,6 +41,7 @@ RUN apt-get update && apt-get install -y \
                 conda create -y -n py_nc_grib python=3 numpy hdf4 hdf5 netcdf4 pandas basemap matplotlib pymysql sqlalchemy &&\
                 source activate py_nc_grib  &&\
                 conda install -y -c conda-forge pygrib &&\
+                conda install -y -c conda-forge ncl && \
                 source deactivate py_nc_grib  &&\
 
                 wget https://code.zmaw.de/attachments/download/14387/cdo-current.tar.gz -O /tmp/cdo-current.tar.gz && \
