@@ -1,7 +1,7 @@
 FROM ubuntu
 
 # Install script dependance avaible on apt source
-RUN apt-get update && apt-get install -y --allow-unauthenticated\
+RUN /bin/bash apt-get update && apt-get install -y --allow-unauthenticated \
                 wget \
                 zip \
                 bzip2 \
