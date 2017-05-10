@@ -1,9 +1,7 @@
 FROM ubuntu
 
 # Install script dependance avaible on apt source
-
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
-                apt-get update && apt-get install -y --allow-unauthenticated \
+RUN /bin/bash -c "apt-get update && apt-get install -y --allow-unauthenticated \
                 wget \
                 zip \
                 bzip2 \
@@ -57,7 +55,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
                 rm -r cdo* && \
 
                 apt-get -y autoremove build-essential && \
-                apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+                apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* "
 
 
 WORKDIR /opt/
