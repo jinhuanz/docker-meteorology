@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:16.06
 
 # Install script dependance avaible on apt source
 RUN /bin/bash -c "apt-get update && apt-get install -y --allow-unauthenticated \
