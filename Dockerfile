@@ -12,7 +12,7 @@ RUN /bin/bash -c "apt-get update && apt-get install -y --allow-unauthenticated \
                 tesseract-ocr \
                 build-essential && \
 
-                wget ftp://ftp.cpc.ncep.noaa.gov/wd51we/wgrib2/wgrib2.tgz.v2.0.4 -O /tmp/wgrib2.tgz && \
+                wget ftp://ftp.cpc.ncep.noaa.gov/wd51we/wgrib2/wgrib2.tgz -O /tmp/wgrib2.tgz && \
                 mkdir -p /usr/local/grib2/ && \
                 cd /tmp/ && \
                 tar -xf /tmp/wgrib2.tgz && \
