@@ -44,7 +44,7 @@ RUN /bin/bash -c "apt-get update && apt-get install -y --allow-unauthenticated \
                 conda install -y -c conda-forge ncl && \
                 source deactivate py_nc_grib  &&\
 
-                wget https://code.zmaw.de/attachments/download/14387/cdo-current.tar.gz -O /tmp/cdo-current.tar.gz && \
+                wget https://code.mpimet.mpg.de/attachments/download/17374/cdo-1.9.4.tar.gz -O /tmp/cdo-current.tar.gz && \
                 cd /tmp && \
                 mkdir -p cdo && \
                 tar -xvf cdo-current.tar.gz -C ./cdo  && \
