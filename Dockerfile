@@ -10,16 +10,6 @@ RUN /bin/bash -c "apt-get update && apt-get install -y --allow-unauthenticated \
                 g++ \
                 gfortran && \
 
-                wget ftp://ftp.cpc.ncep.noaa.gov/wd51we/wgrib2/wgrib2.tgz -O /tmp/wgrib2.tgz && \
-                mkdir -p /usr/local/grib2/ && \
-                cd /tmp/ && \
-                tar -xf /tmp/wgrib2.tgz && \
-                rm -r /tmp/wgrib2.tgz && \
-                mv /tmp/grib2/ /usr/local/grib2/ &&\
-                cd /usr/local/grib2/grib2 && \
-                make && \
-                ln -s /usr/local/grib2/grib2/wgrib2/wgrib2 /usr/local/bin/wgrib2 && \
-
                 wget https://code.mpimet.mpg.de/attachments/download/17374/cdo-1.9.4.tar.gz -O /tmp/cdo.tar.gz && \
                 cd /tmp && \
                 mkdir -p cdo && \
