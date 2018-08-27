@@ -11,7 +11,7 @@ RUN /bin/bash -c "apt-get update && apt-get install -y --allow-unauthenticated \
                 gfortran \
                 build-essential && \
                 
-                aptitude install nco && \
+                apt-get install nco && \
                 
                 wget ftp://ftp.cpc.ncep.noaa.gov/wd51we/wgrib2/wgrib2.tgz.v2.0.4 -O /tmp/wgrib2.tgz && \
                 mkdir -p /usr/local/grib2/ && \
