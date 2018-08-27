@@ -9,6 +9,7 @@ RUN /bin/bash -c "apt-get update && apt-get install -y --allow-unauthenticated \
                 gcc \
                 g++ \
                 gfortran \
+                jasper \
                 build-essential && \
                 
                 apt-get install -y --allow-unauthenticated nco && \
