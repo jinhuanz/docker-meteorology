@@ -11,6 +11,8 @@ RUN /bin/bash -c "apt-get update && apt-get install -y --allow-unauthenticated \
                 gfortran \
                 build-essential && \
                 
+                aptitude install nco && \
+                
                 wget ftp://ftp.cpc.ncep.noaa.gov/wd51we/wgrib2/wgrib2.tgz.v2.0.4 -O /tmp/wgrib2.tgz && \
                 mkdir -p /usr/local/grib2/ && \
                 cd /tmp/ && \
@@ -36,10 +38,12 @@ RUN /bin/bash -c "apt-get update && apt-get install -y --allow-unauthenticated \
                 mkdir -p gribapi && \
                 tar -xvf gribapi.tar.gz  -C ./gribapi && \
                 cd ./gribapi/grib_api* && \
-                /configure && \
+                ./configure && \
                 make && make check &&  make install && \
                 cd ../.. && \
                 rm -r cdo* && \
+                
+                
 
                 apt-get -y autoremove build-essential && \
                 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* "
