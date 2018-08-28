@@ -9,46 +9,28 @@ RUN /bin/bash -c "apt-get update && apt-get install -y --allow-unauthenticated \
                 gcc \
                 g++ \
                 gfortran \
-                jasper \
                 build-essential && \
-                
-                apt-get install -y --allow-unauthenticated nco && \
-                
-                wget ftp://ftp.cpc.ncep.noaa.gov/wd51we/wgrib2/wgrib2.tgz.v2.0.4 -O /tmp/wgrib2.tgz && \
-                mkdir -p /usr/local/grib2/ && \
-                cd /tmp/ && \
-                tar -xf /tmp/wgrib2.tgz && \
-                rm -r /tmp/wgrib2.tgz && \
-                mv /tmp/grib2/ /usr/local/grib2/ &&\
-                cd /usr/local/grib2/grib2 && \
-                make && \
-                ln -s /usr/local/grib2/grib2/wgrib2/wgrib2 /usr/local/bin/wgrib2 && \
 
-                wget https://code.mpimet.mpg.de/attachments/download/17374/cdo-1.9.4.tar.gz -O /tmp/cdo.tar.gz && \
-                cd /tmp && \
-                mkdir -p cdo && \
-                tar -xvf cdo.tar.gz -C ./cdo  && \
-                cd cdo/cdo* && \
-                ./configure && \
-                make && make install && \
-                cd ../.. && \
-                rm -r cdo* && \
-                
-                wget https://confluence.ecmwf.int/download/attachments/3473437/grib_api-1.27.0-Source.tar.gz?api=v2 -O /tmp/gribapi.tar.gz && \
-                cd /tmp && \
-                mkdir -p gribapi && \
-                tar -xvf gribapi.tar.gz  -C ./gribapi && \
-                cd ./gribapi/grib_api* && \
-                ./configure && \
-                make && make check &&  make install && \
-                cd ../.. && \
-                rm -r cdo* && \
-                
-                
+                wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/Miniconda3-latest-Linux-x86_64.sh && \
+                rm -rf /root/miniconda3 && \
+                bash /tmp/Miniconda3-latest-Linux-x86_64.sh  -b && \
+                export PATH="/root/miniconda3/bin/:$PATH" && \
+                rm  -rf /tmp/Miniconda3-latest-Linux-x86_64.sh && \
 
-                apt-get -y autoremove build-essential && \
+                conda create -y -n py_meteo \
+                                   pymysql sqlalchemy \
+                                   requests \
+                                   BeautifulSoup4 && \
+                source activate py_meteo && \
+                conda install -y -c conda-forge cdo && \
+                conda install -y -c conda-forge nco && \
+                conda install -y -c conda-forge wgrib2 && \
+                conda install -y -c eumetsat wgrib && \
+                conda install -y -c conda-forge gdal && \
+                conda install -y -c conda-forge iris && \
+                source deactivate && \
+
                 apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* "
-
 
 WORKDIR /opt/
 VOLUME /opt/
